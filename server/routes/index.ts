@@ -19,18 +19,34 @@ router.post("/create", async (req, res) => {
 router.get("/task/:id", async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
-    if (!task) return res.status(404).json({ message: "No existe!" })
+    if (!task) return res.status(404).json({ message: "No existe!" });
     res.send(task);
   } catch (error) {
     console.log(error);
-    return res.status(500).send(error)
+    return res.status(500).send(error);
   }
 });
 
-router.delete("/delete/:id", (req, res) => {
-  res.send("Eliminando tarea");
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const task = await Task.findByIdAndDelete(req.params.id);
+    if (!task) return res.status(404).json({ message: "No existe!" });
+    return res.json(task);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
 });
 
-router.put("/update/:id", (req, res) => {
-  res.send("actualizando tarea");
+router.put("/update/:id", async (req, res) => {
+  try {
+    const newTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!newTask) return res.status(404).json({ message: "No existe!" });
+    res.json(newTask);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
 });
