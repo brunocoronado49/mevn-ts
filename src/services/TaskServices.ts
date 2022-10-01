@@ -20,3 +20,7 @@ export const updateTask = async (
 ): Promise<AxiosResponse<Task>> => {
   return await axiosInstance.put("/update/" + id, task);
 };
+
+export const deleteTask = async (id: string): Promise<AxiosResponse<Task>> => {
+  return await axiosInstance.delete("/delete/" + id);
+};
