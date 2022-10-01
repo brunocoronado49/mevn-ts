@@ -13,8 +13,8 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/components/TaskForm.vue"),
   },
   {
-    path: "/detail/:id",
-    name: "tasks-detail",
+    path: "/task/:id",
+    name: "task-detail",
     component: () => import("@/components/TaskDetail.vue"),
   },
 ];
