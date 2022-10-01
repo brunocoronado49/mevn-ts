@@ -1,10 +1,12 @@
 <template>
   <h1>TaskList</h1>
-  <ul>
+  <ul class="list-group">
     <li
       v-for="task in tasks"
       :key="task._id"
       @click="$router.push(`/task/${task._id}`)"
+      class="list-group-item list-group-item-action"
+      style="cursor: pointer"
     >
       {{ task.title }}
     </li>

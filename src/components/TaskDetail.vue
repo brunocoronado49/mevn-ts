@@ -1,11 +1,21 @@
 <template>
-  <h1>Detail</h1>
-  <form @submit.prevent="update()">
-    <input type="text" v-model="currentTask.title" />
-    <textarea rows="3" v-model="currentTask.description"></textarea>
-    <button type="submit">Update</button>
-    <button @click="deleteT()">Delete</button>
-  </form>
+  <div class="col-md-4 offset-md-4">
+    <form @submit.prevent="update()" class="card card-body">
+      <h3 class="text-center mb-3">Detail</h3>
+      <input
+        type="text"
+        v-model="currentTask.title"
+        class="form-control mb-3"
+      />
+      <textarea
+        rows="3"
+        v-model="currentTask.description"
+        class="form-control mb-3"
+      ></textarea>
+      <button type="submit" class="btn btn-primary mb-3">Update</button>
+      <button @click="deleteT()" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -35,7 +45,6 @@ export default defineComponent({
         );
         console.log(updatedTask);
         this.currentTask = updatedTask.data;
-
         this.$router.push({ name: "tasks" });
       }
     },
@@ -45,7 +54,6 @@ export default defineComponent({
         const deletedTask = await deleteTask(this.$route.params.id);
         console.log(deletedTask);
         this.currentTask = deletedTask.data;
-        
         this.$router.push({ name: "tasks" });
       }
     },
